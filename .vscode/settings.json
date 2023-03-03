@@ -1,0 +1,20 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  "command-runner.commands": {
+    "build_runner build": "flutter pub run build_runner build",
+    "build_runner build -d": "flutter pub run build_runner build -d"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/*.freezed.dart": true,
+    "**/*.g.dart": true
+  }
+}
