@@ -1,5 +1,4 @@
-enum Interval {
-  m1,
+enum HistoryInterval {
   m5,
   m15,
   m30,

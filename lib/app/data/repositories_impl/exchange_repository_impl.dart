@@ -13,7 +13,7 @@ class ExchangeRepositoryImpl implements ExchangeRepository {
   @override
   HttpFuture<List<HistoryEntry>> getHistory(
     String cryptoId,
-    Interval interval,
+    HistoryInterval interval,
   ) {
     return performHttpRequest(
       _http.send(

@@ -5,5 +5,6 @@ import '../typedefs.dart';
 
 abstract class ExchangeRepository {
   HttpFuture<List<Crypto>> getPrices(List<String> ids);
-  HttpFuture<List<HistoryEntry>> getHistory(String cryptoId, Interval interval);
+  HttpFuture<List<HistoryEntry>> getHistory(
+      String cryptoId, HistoryInterval interval);
 }
