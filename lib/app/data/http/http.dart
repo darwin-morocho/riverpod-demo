@@ -28,10 +28,12 @@ class Http {
     late Response? response;
     late Uri url;
     try {
-      if (path.startsWith('http')) {
+      if (path.startsWith('http://') || path.startsWith('https://')) {
         url = Uri.parse(path);
       } else {
-        path = path.padLeft(1, '/');
+        if (!path.startsWith('/')) {
+          path = '/$path';
+        }
         url = Uri.parse('$_baseUrl$path');
       }
 
@@ -40,16 +42,16 @@ class Http {
       );
 
       request = Request(method.name, url);
-
-      if (method != HttpMethod.get) {
-        headers = {
-          ...headers,
-          'Content-Type': 'application/json; charset=utf-8',
-        };
-        request.body = jsonEncode(body);
-      }
+      headers = {
+        ...headers,
+        'Content-Type': 'application/json; charset=utf-8',
+      };
 
       headers.addAll(headers);
+
+      if (method != HttpMethod.get) {
+        request.body = jsonEncode(body);
+      }
 
       final streamedResponse = await _client.send(request);
       response = await Response.fromStream(streamedResponse);
