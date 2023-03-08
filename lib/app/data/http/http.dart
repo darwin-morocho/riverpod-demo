@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
 enum HttpMethod {
@@ -25,8 +26,9 @@ class Http {
     Map<String, dynamic> body = const {},
   }) async {
     late Request request;
-    late Response? response;
     late Uri url;
+    Response? response;
+
     try {
       if (path.startsWith('http://') || path.startsWith('https://')) {
         url = Uri.parse(path);
@@ -47,7 +49,7 @@ class Http {
         'Content-Type': 'application/json; charset=utf-8',
       };
 
-      headers.addAll(headers);
+      request.headers.addAll(headers);
 
       if (method != HttpMethod.get) {
         request.body = jsonEncode(body);
@@ -73,7 +75,11 @@ class Http {
         statusCode,
         responseBody,
       );
-    } catch (e) {
+    } catch (e, s) {
+      if (kDebugMode) {
+        print(e);
+        print(s);
+      }
       return HttpFailure(
         response?.statusCode,
         e,
