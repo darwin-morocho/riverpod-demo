@@ -9,7 +9,7 @@ part 'history_entry.g.dart';
 @freezed
 class HistoryEntry with _$HistoryEntry {
   factory HistoryEntry({
-    @JsonKey(fromJson: doubleFromString) required double priceUsd,
+    @JsonKey(fromJson: double.parse) required double priceUsd,
     @JsonKey(fromJson: _dateFromUnix) required DateTime time,
   }) = _HistoryEntry;
 
